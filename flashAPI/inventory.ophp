@@ -1,0 +1,99 @@
+<?php
+require_once('../../dorps/globConfig.php');
+
+$MySQLi = new mysqli(host, username, password, database);
+
+require_once root.'class/user/Class.Users.php';
+$Users = new Users();
+$Users->checkSession();
+
+require_once root.'class/user/Class.Equipment.php';
+$Equipment = new Equipment();
+$Equipment->loadequipment();
+
+require_once root.'sockets/Class.Emulator.Updater.php';
+$EmulatorUpdater = new EmulatorUpdater();
+
+$action = $_POST["action"];
+
+$json = array('isError' => 0, 'data' => array());
+$json['data']['ret'] = array();
+$json['data']['money']['uridium'] = number_format($uridium, 0, ".", ".");
+$json['data']['money']['credits'] = number_format($credits, 0, ".", ".");
+	
+if ($action == "init")
+{
+echo(base64_encode(json_encode($Equipment->equipment)));
+}
+else if ($action == "move")
+{
+	$post = $_POST["params"];
+	$params = base64_decode($post);
+	$result = json_decode($params);
+
+	$EmulatorUpdater->startConnection(ip, port);
+	if ($EmulatorUpdater->socket && !$EmulatorUpdater->checkIfUserIsOnBase($ID))
+	{
+		echo base64_encode('{"isError":1,"data":{"ret":0,"money":{"uridium":"650","credits":"4.735.316"}},"error":{"message":"N\u00e3o \u00e9 poss\u00edvel colocar o equipamento! Vai primeiro at\u00e9 \u00e0 tua esta\u00e7\u00e3o espacial."}}');
+		return;
+	}
+	$from = $result->from->target;
+	$to = $result->to->target;
+	if($from == "ship" && $to == "inventory")
+	{
+		$Equipment->moveShipToInventory($result);
+	}
+	else if($from == "inventory" && $to == "ship")
+	{
+		$Equipment->moveInventoryToShip($result);
+	}
+	else if($from == "inventory" && $to == "drone")
+	{
+		$Equipment->moveInventoryToDrone($result);
+	}
+	else if($from == "drone" && $to == "inventory")
+	{
+		$Equipment->moveDroneToInventory($result);
+	}
+	
+	$stats_config1 = $Equipment->getStats(1);
+	$stats_config2 = $Equipment->getStats(2);
+	
+	if($EmulatorUpdater->socket)
+	{
+		if($EmulatorUpdater->sendUpdateEquipment($Users->DataRow['userID'], $Users->DataRow['shipID'], $stats_config1, $stats_config2) == true)
+		{
+			$Equipment->saveequipment();
+			echo base64_encode(json_encode($json));
+		}
+		else
+		{
+			echo base64_encode(json_encode('{"isError":1,"data":{"ret":0,"money":{"uridium":"650","credits":"4.735.316"}},"error":{"message":"You are not on base!"}}'));
+		}
+		$EmulatorUpdater->closeConnection();
+	}
+	else
+	{
+		$Equipment->saveequipment();
+		echo base64_encode(json_encode($json));
+	}
+}
+else if ($action == "droneEquip")
+{
+echo $Equipment->droneEquip();
+}
+else if ($action == "clearConfig")
+{
+$post = $_POST["params"];
+$params = base64_decode($post);
+$result = json_decode($params);
+
+$Equipment->clearConfig($result->configID);
+$Equipment->saveequipment();
+$json = array('isError' => 0, 'data' => array());
+$json['data']['ret'] = true;
+$json['data']['money']['uridium'] = number_format($uridium, 0, ".", ".");
+$json['data']['money']['credits'] = number_format($credits, 0, ".", ".");
+echo base64_encode(json_encode($json));
+}
+?>

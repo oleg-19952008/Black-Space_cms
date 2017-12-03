@@ -10,3 +10,4 @@
     <script type="text/javascript">cont_logo(); equip(); st_p();</script> 
 </body>
 </html>
+// возможно щас не будет работать, swf_global в архвие Black-Space_cms

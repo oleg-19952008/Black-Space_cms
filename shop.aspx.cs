@@ -29,10 +29,10 @@ namespace Black
         //}
 
 
-
+           
         protected void Page_Load(object sender, EventArgs e)
         {
-
+         Response.Write(   new core.Js().alert("asd"));
             //DB_.LOGIN= login.Text.ToString();
             //DB_.PASS = pass.Text.ToString();
 

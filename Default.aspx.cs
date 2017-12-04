@@ -51,4 +51,23 @@ public partial class _Default : Page
 
         }
     }
+
+ 
+
+
+
+    protected void RadMenu1_ItemClick(object sender, Telerik.Web.UI.RadMenuEventArgs e)
+    {
+        Response.Redirect("spacemap.aspx");
+    }
+
+    protected void RadMenu2_ItemClick(object sender, Telerik.Web.UI.RadMenuEventArgs e)
+    {
+        Response.Redirect("shop.aspx");
+    }
+
+    protected void RadMenu3_ItemClick(object sender, Telerik.Web.UI.RadMenuEventArgs e)
+    {
+        Response.Redirect("equipment.aspx");
+    }
 }

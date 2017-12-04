@@ -20,23 +20,51 @@
         .style2 {
             width: 200px;
         }
+        #form1 {
+            height: 433px;
+        }
+        .frame {
+            height: 206px;
+            width: 939px;
+        }
     </style>
 </head>
-<body style="height: 179px">
-    <script type="text/javascript">logo();    </script>
-    <br> 
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  <input type="button" value="SHOP" onclick="zamena('shop.aspx')" class="button style2" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-   
-    <input type="button" value="EQUIPMENT" onclick="zamena('equipment.aspx')" class="button style2" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
-    <input type="button" value="SPACE" onclick="zamena('spacemap.aspx')" class="button style2" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-<input type="button" value="MY RESOLUTION" onclick=" Get_MyRes();" class="button style2" />
-    <div class="frame">
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="button" value="REGISTRATION" onclick="zamena('register.aspx')" class="button style2" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="button" value="LOGIN" onclick="zamena('login.aspx')" class="button style2" />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-         </div>
-    <p>
-        &nbsp;</p>
+<body style="height: 359px">
+    <form id="form1" runat="server">
+        <telerik:RadMenu ID="RadMenu1" Runat="server" OnItemClick="RadMenu1_ItemClick" Skin="BlackMetroTouch">
+            <Items>
+                <telerik:RadMenuItem runat="server" Text="SPACE">
+                </telerik:RadMenuItem>
+            </Items>
+        </telerik:RadMenu>
+        <telerik:RadMenu ID="RadMenu2" Runat="server" OnItemClick="RadMenu2_ItemClick" Skin="BlackMetroTouch">
+            <Items>
+                <telerik:RadMenuItem runat="server" Text="SHOP">
+                </telerik:RadMenuItem>
+            </Items>
+        </telerik:RadMenu>
+        <telerik:RadMenu ID="RadMenu3" Runat="server" Skin="BlackMetroTouch" style="top: 0px; left: 0px" OnItemClick="RadMenu3_ItemClick">
+            <Items>
+                <telerik:RadMenuItem runat="server" Text="equipment">
+                </telerik:RadMenuItem>
+            </Items>
+        </telerik:RadMenu>
+        <telerik:RadMenu ID="RadMenu4" Runat="server" Skin="BlackMetroTouch">
+            <Items>
+                <telerik:RadMenuItem runat="server" Text="test">
+                </telerik:RadMenuItem>
+            </Items>
+        </telerik:RadMenu>
+        <telerik:RadScriptManager ID="RadScriptManager1" runat="server">
+            <Scripts>
+                <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.Core.js">
+                </asp:ScriptReference>
+                <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQuery.js">
+                </asp:ScriptReference>
+                <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQueryInclude.js">
+                </asp:ScriptReference>
+            </Scripts>
+        </telerik:RadScriptManager>
+    </form>
 </body>
 </html>

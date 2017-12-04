@@ -1,5 +1,5 @@
-var ip_host =  "54.202.236.59";
+var ip_host =  "1.1.1.245";
 
 var url = 'http://' + ip_host+ "/";
 
-var cdn = "http://54.202.236.59/";
+var cdn = "http://1.1.1.245/";

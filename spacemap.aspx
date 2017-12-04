@@ -1,6 +1,6 @@
 ﻿<%@ Page Title="Home Page" Language="C#"  AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %><html lang="ru" xmlns="http://www.w3.org/1999/xhtml">   <%        %>
 <head>
-    <script src="scripts/lib.js"></script><%--<script src="js/flash/client.js"></script>--%> 
+    <script src="./scripts/lib.js"></script><%--<script src="js/flash/client.js"></script>--%> 
     <meta charset="utf-8" />
     <title>Space | Black SPACE</title>
 </head>
@@ -15,7 +15,7 @@ if(old_client == false)
 	
     jQuery(document).ready(function() {
         flashembed("container", {
-            "src": "spacemap/main.swf",
+            "src": "spacemap/main.1.0.2 mod screen_with stars.swf",
             "width": "100%",
             "height": "100%",
             "wmode": "direct",
@@ -26,9 +26,9 @@ if(old_client == false)
         },
         {
             "lang": "en",
-            "userID": "12972",
+            "userID": "20001",
             "factionID": "1",
-            "sessionID": "MY_SID",
+            "sessionID": "153195889970247220",
             "basePath": "spacemap",    // "basePath": "spacemap",
             "pid": 563,
             "resolutionID": "0",
@@ -38,7 +38,7 @@ if(old_client == false)
             "chatHost": "127.0.0.1",
           "cdn": "",
  
-            "useHash": "1",
+            "useHash": "0",
             "host": "127.0.0.1",
             //для 6.3.1 не нужно ее    "browser": "Chrome",
          //   "fullscreen": "1",

@@ -1,6 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeFile="gam.aspx.cs" Inherits="scripts_screen_manager" %>
-        
- 
+﻿ 
 <game>
 	<!-- Colors ............................................................................................................................. -->
 	<colors>
@@ -199,16 +197,11 @@
 	<settingsSound>
 			 	<item languageKey="setting_about" tooltipKey=""/>
  	<settingField   key="setting_about"/>  
+ 	<settingField   key="setting_about2"/>  
 	</settingsSound>
-	  		<settingsInterface>	
-	 
+	  		<settingsInterface>		 
 		<settingField id="15" key="sett_setting15"/> <!-- Play music -->
 		<settingField id="16" key="sett_setting16"/> <!-- Play sound effects -->
-
-	<!--<item    tooltipKey="setting_about"/>
- 		<settingField id="33" key="setting_displayEngineSmoke"/> ="ttip_setting_quality_explosion" -->
-		<!--<settingField id="7" key="sett_setting7"/>--> <!-- Show transparent background -->
-		<!--<settingField id="13" key="sett_setting13"/>--> <!-- Show message status -->
   </settingsInterface> 
 
 	<!-- Trade Window ............................................................................................................................. -->
@@ -281,7 +274,7 @@
 	</refinementWindow>		
 	<!-- Action Menu - currently 7 combs with submenu......................................................................................................... -->
 <!--ADDED 6 HERE-->
-	<menu gap="3" actionSlots="10" menuSlots="7" maxVisiblePoolSlots="6" poolSlots="13">
+	<menu gap="3" actionSlots="20" menuSlots="7" maxVisiblePoolSlots="6" poolSlots="13">
 		<menuButtons stdIcon="comb01_std.png" hoverIcon="comb01_hover.png" selectedIcon="comb01_selected.png">
 			<menuButton id="0" resKey="laser.png" subAction="true" languageKey="ttip_menu_laser">
 				<actionButtons stdIcon="comb02_std.png" hoverIcon="comb02_hover.png" selectedIcon="comb02_selected.png">
@@ -418,10 +411,13 @@
 	<patterns>
 
 		<resolutions>
-			<!-- new  client resolution -->
-			<resolution id="0" width="<%                  Response.Write(new sql().sql_test("SELECT `screen_x`,`screen_y` FROM `users` WHERE  user_id = " + sql.user_id, "screen_x"));    %>" height="<%  Response.Write(new sql().sql_test("SELECT `screen_x`,`screen_y` FROM `users` WHERE  user_id = " + sql.user_id, "screen_y"));
+			<!-- old client resolution -->
  
-                %>" mainMenuXPos="318" mainMenuYPos="503" slotMenuXPos="281" slotMenuYPos="474">
+			<resolution id="0" width="888" height="888" mainMenuXPos="318" mainMenuYPos="503" slotMenuXPos="281" slotMenuYPos="474"> 
+
+	 
+ 
+
 				<minimizedIconSlots x="25" y="200">
 					<minimizedIconSlot iconXPos="0" iconYPos="0"/>
 					<minimizedIconSlot iconXPos="-17" iconYPos="29"/>
@@ -506,11 +502,9 @@
 			<resource resKey="skillLaser3"/>
 			<resource resKey="skillLaser4"/>
 			<resource resKey="skillLaser5"/>
-			<resource resKey="skillLaser6"/>
-			
+			<resource resKey="skillLaser6"/>			
 			<resource resKey="crystal1"/>
-			<resource resKey="crystal2"/>
-		
+			<resource resKey="crystal2"/>		
 			<resource resKey="rocket1"/>
 			<resource resKey="rocket2"/>
 			<resource resKey="rocket3"/>
@@ -520,20 +514,15 @@
 			<resource resKey="rocket7"/>
 			<resource resKey="rocket8"/>
 			<resource resKey="rocket9"/>
-			<resource resKey="rocket10"/>
-			
-			<resource resKey="malusCloud0"/>
-		
+			<resource resKey="rocket10"/>			
+			<resource resKey="malusCloud0"/>		
 			<resource resKey="explosion0"/>
 			<resource resKey="explosion1"/>
 			<resource resKey="explosion2"/>
 			<resource resKey="explosion3"/>
 			<resource resKey="explosion4"/>
 			<resource resKey="explosion5"/>
-
-
 			<resource resKey="spawn0"/>
-
 			<resource resKey="portalAnimation0"/>
 			<resource resKey="drones"/>
 			<resource resKey="droneGroup"/>
@@ -602,7 +591,7 @@
 			<resource resKey="oreRed" precache="false"/>	
 			<resource resKey="oreYellow" precache="false"/>		
 			<resource resKey="ore_palladium" precache="false"/>		
-			
+			<!-- 
 			<resource resKey="firework_small_red"/>		
 			<resource resKey="firework_small_green"/>	
 			<resource resKey="firework_small_blue"/>	
@@ -613,7 +602,7 @@
 			
 			<resource resKey="firework_large_red"/>		
 			<resource resKey="firework_large_green"/>	
-			<resource resKey="firework_large_blue"/>
+			<resource resKey="firework_large_blue"/> -->
 			
 			<resource resKey="refinement"/>
 			
@@ -644,37 +633,6 @@
 			<resource resKey="mask93-2"/>
 			<resource resKey="mask93-3"/>
 		</preloadedResources>
-
-	<!-- Ships .............................................................................................................................
-
-			 -= Needed Values: =-
-			 type - this is the typeID from the server
-			 resKey - the ResourceID for rhe resources.xml
-
-			 -= Optional Values: =-
-			 <playLoop> default is false. If true, the animation will play in loop. Otherwise the currentFrame of the Ship is set by the direction of the ship.
-			 <laserClassID> default is 0. look to the <lasers> section. -1 is for nor visible lasers.
-			 <rocketClassID> default is 0. look to the <rockets> section. -1 is for nor visible rockets.
-			 <expansionClassID> default is -1, which means that this ship has no expansion. This affects also the emission point of the laser, which is at the center of the ship. Otherwise, set a typeID to the <expansions> section
-			 <labelVisible> default is true.
-			 <labelYOffset> default is 0. If 0, the label will be positioned automatically at the bottom of the ship. The Offset starts from the center of the ship.
-			 <energyVisible> default is true.
-			 <energyYOffset> default is 0. If 0, the label will be positioned automatically at the top of the ship. The Offset starts from the center of the ship.
-			 <selectionYOffset> default is 0. If 0, the selection will be positioned automatically. The Offset starts from the center of the ship in vertical direction.
-			 <explodeTypeID> default is 0. look to the <pyroEffects> section
-			 <laserDamageTypeID> default is 0. look to the <pyroEffects> section
-			 <rocketDamageTypeID> default is 0. look to the <pyroEffects> section
-			 <engineTypeID> default is 0. look at the <engines> section
-			 <engineSmokeID> default is 0. look at the <engines> section
-			 <enginePositionClassID> default is -1, which means that this ship has no engine. Otherwise, set a classID to the <enginePositions> section
-			 <moveRadius> default is 100. This is the radius in Pixels, beginning from the center of the ship, where the Ship ignores a move command.
-			 <preload> default is false. Preloads the Ship
-			 <precache> default is false. Precaches the Ship
-			 <unload> default is true. Unloads the Ship after Mapjump
-			 <clickRadius>
-			 <clickOffsetX>
-			 <clickOffsetY>
-			 -->
 
 		<ships>
 			<ship comment="Phoenix"
@@ -886,7 +844,38 @@
   				labelYOffset="80"
   				iconClassID="0"
   		
-  				/>
+  				/>	
+					<ship comment="hitac"
+				type="116"
+				resKey="ship116"
+				defaultCharacter="npc"
+ laserClassID="7" 
+				enginePositionClassID="12"
+				moveRadius="40"
+  				clickRadius="32"
+  				clickOffsetX="0"
+  				clickOffsetY="0"
+                energyYOffset="10"
+  				labelYOffset="80"
+  				iconClassID="0"
+  		
+  				/>	
+ 					<ship comment="hitac"
+				type="117"
+				resKey="ship117"
+				defaultCharacter="npc"
+ laserClassID="4"
+				enginePositionClassID="12"
+				moveRadius="40"
+  				clickRadius="32"
+  				clickOffsetX="0"
+  				clickOffsetY="0"
+                energyYOffset="10"
+  				labelYOffset="80"
+  				iconClassID="0"
+  		
+  				/>	
+ 		
 		<ship comment="Vengeance Adept" 
 				type="16" 
 				resKey="ship16"
@@ -903,6 +892,63 @@
 		<ship comment="Vengeance Corsair"
 				type="17"
 				resKey="ship17"
+				defaultCharacter="player"
+				expansionClassID="8"
+				enginePositionClassID="8"
+				unload="false"
+				clickRadius="55"
+				clickOffsetX="0"
+				clickOffsetY="0"
+				energyYOffset="40"
+				labelYOffset="60"
+				iconClassID="8" />
+				
+		<ship comment="Vengeance Corsair"
+				type="170"
+				resKey="ship170"
+				defaultCharacter="player"
+				expansionClassID="8"
+				enginePositionClassID="8"
+				unload="false"
+				clickRadius="55"
+				clickOffsetX="0"
+				clickOffsetY="0"
+				energyYOffset="40"
+				labelYOffset="60"
+				iconClassID="8" />
+				
+				
+						<ship comment="Vengeance Corsair"
+				type="169"
+				resKey="ship171"
+				defaultCharacter="player"
+				expansionClassID="8"
+				enginePositionClassID="8"
+				unload="false"
+				clickRadius="55"
+				clickOffsetX="0"
+				clickOffsetY="0"
+				energyYOffset="40"
+				labelYOffset="60"
+				iconClassID="8" />
+				
+				
+						<ship comment="Vengeance Corsair"
+				type="168"
+				resKey="ship168"
+				defaultCharacter="player"
+				expansionClassID="8"
+				enginePositionClassID="8"
+				unload="false"
+				clickRadius="55"
+				clickOffsetX="0"
+				clickOffsetY="0"
+				energyYOffset="40"
+				labelYOffset="60"
+				iconClassID="8" />
+						<ship comment="Vengeance Corsair"
+				type="172"
+				resKey="ship172"
 				defaultCharacter="player"
 				expansionClassID="8"
 				enginePositionClassID="8"
@@ -1004,7 +1050,113 @@
                 energyYOffset="40"
                 labelYOffset="60"
                 iconClassID="10"
-                />  				
+                />  
+  <ship comment="aegis "
+                type="150"
+                resKey="ship150"
+                defaultCharacter="player"
+                expansionClassID="10"
+                enginePositionClassID="10"
+                moveRadius="70"
+                clickRadius="70"
+                clickOffsetX="0"
+                clickOffsetY="0"
+                energyYOffset="40"
+                labelYOffset="60"
+                iconClassID="10"
+                />				
+        <ship comment="aegis"
+                type="151"
+                resKey="ship151"
+                defaultCharacter="player"
+                expansionClassID="10"
+                enginePositionClassID="10"
+                moveRadius="70"
+                clickRadius="70"
+                clickOffsetX="0"
+                clickOffsetY="0"
+                energyYOffset="40"
+                labelYOffset="60"
+                iconClassID="10"
+                /> 		
+				        <ship comment="aegis"
+                type="152"
+                resKey="ship152"
+                defaultCharacter="player"
+                expansionClassID="10"
+                enginePositionClassID="10"
+                moveRadius="70"
+                clickRadius="70"
+                clickOffsetX="0"
+                clickOffsetY="0"
+                energyYOffset="40"
+                labelYOffset="60"
+                iconClassID="10"
+                /> 		
+					        <ship comment="citadel"
+                type="153"
+                resKey="ship153"
+                defaultCharacter="player"
+                expansionClassID="10"
+                enginePositionClassID="10"
+                moveRadius="70"
+                clickRadius="70"
+                clickOffsetX="0"
+                clickOffsetY="0"
+                energyYOffset="40"
+                labelYOffset="60"
+                iconClassID="10"
+                /> 	
+				 <ship comment="citadel"
+                type="154"
+                resKey="ship154"
+                defaultCharacter="player"
+                expansionClassID="10"
+                enginePositionClassID="10"
+                moveRadius="70"
+                clickRadius="70"
+                clickOffsetX="0"
+                clickOffsetY="0"
+                energyYOffset="40"
+                labelYOffset="60"
+                iconClassID="10"
+                /> 	
+				
+				 <ship comment="citadel"
+                type="155"
+                resKey="ship155"
+                defaultCharacter="player"
+                expansionClassID="10"
+                enginePositionClassID="10"
+                moveRadius="70"
+                clickRadius="70"
+                clickOffsetX="0"
+                clickOffsetY="0"
+                energyYOffset="40"
+                labelYOffset="60"
+                iconClassID="10"
+                /> 	
+				
+				
+				
+				
+			  				<!-- кастомные корабли -->
+				 <ship comment="pusat"
+	                type="500"
+	                resKey="ship500"
+	                defaultCharacter="player"
+	                expansionClassID="10"
+	                enginePositionClassID="10"
+	                moveRadius="70"
+	                clickRadius="70"
+	                clickOffsetX="0"
+	                clickOffsetY="0"
+	                energyYOffset="40"
+	                labelYOffset="60"
+	                iconClassID="10"
+                /> 		
+				
+				
         <ship comment="Goliath Blue"
                 type="54"
                 resKey="ship54"
@@ -1065,6 +1217,23 @@
         <ship comment="Goliath Bastion"
                 type="59"
                 resKey="ship59"
+                defaultCharacter="player"
+                expansionClassID="10"
+                enginePositionClassID="10"
+                moveRadius="70"
+                preload="true"
+                precache="false"
+                unload="false"
+                clickRadius="70"
+                clickOffsetX="0"
+                clickOffsetY="0"
+                energyYOffset="40"
+                labelYOffset="60"
+                iconClassID="10"
+                />
+				<ship comment="Goliath Bastion"
+                type="131"
+                resKey="ship131"
                 defaultCharacter="player"
                 expansionClassID="10"
                 enginePositionClassID="10"
@@ -1233,6 +1402,18 @@
  				clickOffsetY="0"
  				labelYOffset="40"
  				/>
+					<ship type="24"
+				resKey="ship24"
+				defaultCharacter="npc"
+				laserClassID="1"
+				loopPlay="true"
+				comment="Lordakia"
+				explodeTypeID = "0"
+				clickRadius="40"
+ 				clickOffsetX="0"
+ 				clickOffsetY="0"
+ 				labelYOffset="40"
+ 				/>
 			<ship type="72"
 				resKey="ship72"
 				defaultCharacter="npc"
@@ -1243,7 +1424,28 @@
   				laserClassID="4"
   				labelYOffset="100"
   				/>
-			<ship type="73"
+				<ship type="26"
+				resKey="ship26"
+				defaultCharacter="npc"
+				comment="Devolarium"
+				clickRadius="120"
+  				clickOffsetX="0"
+  				clickOffsetY="0"
+  				laserClassID="4"
+  				labelYOffset="100"
+  				/>
+			<ship type="31"
+				resKey="ship31"
+				defaultCharacter="npc"
+				loopPlay="true"
+				comment="Mordon"
+				laserClassID="-1"
+				clickRadius="55"
+  				clickOffsetX="0"
+  				clickOffsetY="0"
+  				labelYOffset="50"
+  				/>
+					<ship type="73"
 				resKey="ship73"
 				defaultCharacter="npc"
 				loopPlay="true"
@@ -1274,6 +1476,16 @@
   				laserClassID="1"
   				labelYOffset="40"
   				/>
+					<ship type="25"
+				resKey="ship25"
+				defaultCharacter="npc"
+				comment="Saimon"
+				clickRadius="40"
+  				clickOffsetX="0"
+  				clickOffsetY="-4"
+  				laserClassID="1"
+  				labelYOffset="40"
+  				/>
 			<ship type="76"
 				resKey="ship76"
 				defaultCharacter="npc"
@@ -1286,7 +1498,31 @@
   				clickOffsetY="0"
   				labelYOffset="50"
   				/>
-			<ship type="77"
+					<ship type="27"
+				resKey="ship27"
+				defaultCharacter="npc"
+				loopPlay="true"
+				comment="Sibelonit"
+				explodeTypeID = "0"
+				laserClassID="1"
+				clickRadius="40"
+  				clickOffsetX="0"
+  				clickOffsetY="0"
+  				labelYOffset="50"
+  				/>
+			<ship type="28"
+				resKey="ship28"
+				defaultCharacter="npc"
+				loopPlay="true"
+				comment="Lordakium (Mothership)"
+				explodeTypeID = "0"
+				clickRadius="80"
+  				clickOffsetX="0"
+  				clickOffsetY="0"
+  				laserClassID="5"
+  				labelYOffset="100"
+  				/>
+				<ship type="77"
 				resKey="ship77"
 				defaultCharacter="npc"
 				loopPlay="true"
@@ -1310,7 +1546,41 @@
   				labelYOffset="50"
   				rotatable="false"
   				/>
-			<ship type="79"
+				<ship type="29"
+				resKey="ship29"
+				defaultCharacter="npc"
+				comment="Kristallin"
+				laserClassID="3"
+				explodeTypeID="0"
+				clickRadius="45"
+  				clickOffsetX="0"
+  				clickOffsetY="0"
+  				labelYOffset="50"
+  				rotatable="false"
+  				/>
+			<ship type="35"
+				resKey="ship35"
+				defaultCharacter="npc"
+				comment="Kristallon (Mothership)"
+				laserClassID="6"
+				clickRadius="80"
+  				clickOffsetX="0"
+  				clickOffsetY="0"
+  				labelYOffset="110"
+  				rotatable="false"
+  				/>
+					<ship type="45"
+				resKey="ship45"
+				defaultCharacter="npc"
+				comment="Kristallon (Mothership)"
+				laserClassID="6"
+				clickRadius="80"
+  				clickOffsetX="0"
+  				clickOffsetY="0"
+  				labelYOffset="110"
+  				rotatable="false"
+  				/>
+						<ship type="79"
 				resKey="ship79"
 				defaultCharacter="npc"
 				comment="Kristallon (Mothership)"
@@ -1381,6 +1651,8 @@
 	              labelYOffset="50"
 	              iconClassID="2"
 	              />
+				  
+			<ship comment="StreunerBoss" type="23" resKey="ship23" defaultCharacter="npc" expansionClassID="23" enginePositionClassID="23" moveRadius="70" clickRadius="50" seekInterval="50" clickOffsetX="2" clickOffsetY="4" energyYOffset="10" labelYOffset="80"/>
 	        <ship comment="StreuneR"
 	              type="85"
 	              resKey="ship85"
@@ -1392,7 +1664,19 @@
 	              clickOffsetY="0"
 	              labelYOffset="40"
 	              iconClassID="4"
-	              />     
+	              />   
+  <ship comment="StreuneR"
+	              type="34"
+	              resKey="ship34"
+	              defaultCharacter="npc"
+	              expansionClassID="85"
+	              enginePositionClassID="85"
+	              clickRadius="40"
+	              clickOffsetX="0"
+	              clickOffsetY="0"
+	              labelYOffset="40"
+	              iconClassID="4"
+	              />  				  
              <ship comment="FalconBoss"
 	              type="90"
 	              resKey="ship90"
@@ -1540,7 +1824,20 @@
 	  				energyYOffset="10"
 	  				megaExplosion="true"
 	  				labelYOffset="40"
-	  				/>          
+	  				/>   
+<ship comment="Ice Meteoroid"
+	  				type="130"
+	  				resKey="ship130"
+	  				defaultCharacter="npc"
+					loopPlay="true"
+	  				moveRadius="70"
+	  				clickRadius="70"
+	  				clickOffsetX="0"
+	  				clickOffsetY="0"
+	  				energyYOffset="10"
+	  				megaExplosion="true"
+	  				labelYOffset="40"
+	  				/>					
 	  		<ship comment="Icy"
 	  				type="103"
 	  				resKey="ship103"
@@ -1566,6 +1863,19 @@
 	  				labelYOffset="130"
 	                iconClassID="0"
 	  				/>
+	  		<ship comment="Unidentified Carrier"
+  				type="105"
+  				class="standart"
+  				defaultCharacter="npc"
+  				moveRadius="70"
+  				clickRadius="100"
+  				clickOffsetX="0"
+  				clickOffsetY="0"
+                energyYOffset="-110"
+                labelYOffset="255"
+                resKey="ship105"
+			/> 
+			
 			<ship comment="Pirate Interceptor"
 	                type="111"
 	                resKey="ship111"
@@ -1661,6 +1971,8 @@
 	  				clickOffsetY="0"
 	                iconClassID="0"
 	  				/>
+
+
 	  	</ships>
 
 
@@ -1722,6 +2034,9 @@
 			<background content="resource" type="92" resKey="background92"/>
 			<background content="resource" type="93" resKey="background93"/>
 			<background content="resource" type="200" resKey="background200"/>
+			<background content="resource" type="201" resKey="bcg_201"/>
+			<background content="resource" type="202" resKey="bcg_202"/>
+			<background content="resource" type="203" resKey="bcg_203"/>
 			<background content="resource" type="255" resKey="background255"/>
 			<background content="resource" type="1001" resKey="layer1"/>
 			<background content="resource" type="1002" resKey="layer2"/>
@@ -1771,6 +2086,7 @@
 			<minimap type="91" resKey="minimap91" />
 			<minimap type="92" resKey="minimap92" />
 			<minimap type="93" resKey="minimap93" />
+				<minimap type="201" resKey="minimap201" />
 		</minimaps>
 
 
@@ -2380,7 +2696,25 @@
                  <stage id="1" >
                    <salvo laser="standard" />
                  </stage>
-             </expansion>			 
+             </expansion>
+
+			<expansion class="23">
+				<positionsList name="leftFrontInner" data="-48.4,38.3,-55.9,30.4,-61.2,21.6,-63.8,12.8,-63.8,4.0,-61.6,-4.8,-56.8,-12.8,-50.6,-19.4,-42.7,-25.5,-33.4,-30.4,-23.8,-33.9,-13.2,-36.1,-2.2,-37.0,8.8,-36.5,19.4,-34.8,29.5,-31.7,39.2,-27.3,47.1,-21.6,54.1,-15.0,59.4,-7.5,62.5,0.9,63.4,9.7,61.6,18.9,57.2,27.7,50.2,35.6,40.9,42.7,29.0,48.4,15.8,51.9,2.2,53.7,-12.3,52.8,-26.0,49.7,-37.8,44.9"/>
+				<positionsList name="rightFrontInner" data="-40.0,-26.8,-30.4,-31.2,-20.7,-34.3,-9.7,-36.1,0.9,-36.5,11.9,-35.6,22.4,-33.4,32.1,-29.9,41.4,-25.5,49.3,-19.8,55.4,-12.8,59.8,-4.8,62.5,3.5,62.5,12.3,59.8,21.1,55.0,29.9,47.1,37.8,37.4,44.4,25.1,49.3,11.9,52.4,-2.2,53.2,-16.3,51.5,-29.0,48.4,-40.9,42.7,-50.2,35.6,-57.2,27.7,-61.6,18.9,-63.4,10.1,-62.9,1.3,-59.8,-7.0,-55.0,-14.5,-48.0,-21.1"/>
+				<positionsList name="centerFront" data="-83.2,11.4,-79.2,0.0,-72.2,-10.1,-63.4,-18.9,-52.8,-26.4,-40.9,-32.1,-27.7,-36.5,-14.5,-39.2,-0.4,-40.0,13.2,-39.2,26.8,-36.5,39.6,-32.1,51.5,-26.4,62.5,-19.4,71.3,-10.1,78.3,0.0,82.3,11.0,83.6,23.3,81.4,35.6,75.7,48.0,66.4,59.4,53.2,69.1,37.4,77.0,19.4,81.8,0.0,83.6,-19.8,81.8,-37.8,77.0,-54.1,69.5,-66.9,59.4,-76.6,48.0,-82.3,35.6,-84.5,23.3"/>
+			<!--
+			TODO: Adapting/Adding salvos for each expansion (stage)
+			-->
+				<stage id="1">
+					<salvo laser="centerFront,leftFrontInner,rightFrontInner"/>
+				</stage>
+				<stage id="2">
+					<salvo laser="centerFront,leftFrontInner,rightFrontInner"/>
+				</stage>
+				<stage id="3">
+					<salvo laser="centerFront,leftFrontInner,rightFrontInner"/>
+				</stage>
+			</expansion>			 
             <!--    Expansions for ships compatible with StreuneR Model-->
             <expansion class="85">
                 <positionsList name="standard" data="-27.8,4.5,-27.8,-0.6,-24.5,-5.6,-21.5,-10.1,-17.8,-14.6,-12.3,-18.1,-6.5,-20.1,0,-21.8,7.5,-23,15.3,-22.5,21.8,-21.1,27.8,-19.1,32.5,-14.8,37.8,-11.6,39.3,-7.1,40,-2.6,40,2.2,41.5,6.7,39.5,11.5,36.8,15,33.3,18.9,28,21.9,22.5,23.9,16.3,24.4,10,25.4,3.7,25.4,-2.3,24.9,-8.3,22.7,-12.5,19.9,-17.8,17,-20.8,13,-23.3,8.9" />
@@ -2663,6 +2997,94 @@
 			<planet id="47" resKey="pirateFreighter" radius="240" comment="pirate freighter on map 5-3"/>
 			<planet id="48" resKey="pirateOneway" radius="240" comment="pirate oneway sign"/>
 			<planet id="49" resKey="pirateExit" radius="240" comment="pirate exit sign"/>
+			<planet id="50" resKey="planet50" radius="560" comment="Sun on GG Zeta Map 2"/>		
+			<planet id="51" resKey="planet51" radius="154" comment="Crystal 1 GG Zeta Map 2"/>		
+			<planet id="52" resKey="planet52" radius="154" comment="Crystal 2 GG Zeta Map 2"/>		
+			<planet id="53" resKey="planet53" radius="154" comment="Crystal 3 GG Zeta Map 2"/>		
+			<planet id="54" resKey="planet54" radius="154" comment="Crystal 4 GG Zeta Map 2"/>		
+			<planet id="55" resKey="planet55" radius="154" comment="Crystal 5 GG Zeta Map 2"/>		
+			<planet id="56" resKey="planet56" radius="154" comment="Crystal 6 GG Zeta Map 2"/>		
+			
+			<planet id="57" resKey="planet57" radius="154" comment="Crystal 1 GG Zeta Map 3"/>		
+			<planet id="58" resKey="planet58" radius="196" comment="Crystal 2 GG Zeta Map 3"/>		
+			<planet id="59" resKey="planet59" radius="303" comment="Crystal 3 GG Zeta Map 3"/>		
+			<planet id="60" resKey="planet60" radius="229" comment="Crystal 4 GG Zeta Map 3"/>		
+			<planet id="61" resKey="planet61" radius="200" comment="Crystal 5 GG Zeta Map 3"/>		
+			<planet id="62" resKey="planet62" radius="215" comment="Crystal 6 GG Zeta Map 3"/>		
+			<planet id="63" resKey="planet63" radius="264" comment="Asteroid 1 GG Epsilon Map"/>		
+			<planet id="64" resKey="planet64" radius="248" comment="Asteroid 2 GG Epsilon Map"/>		
+			<planet id="65" resKey="planet65" radius="278" comment="Asteroid 3 GG Epsilon Map"/>		
+			<planet id="66" resKey="planet66" radius="285" comment="Asteroid 4 GG Epsilon Map"/>		
+			<planet id="67" resKey="planet67" radius="326" comment="Asteroid 5 GG Epsilon Map"/>		
+			<planet id="68" resKey="planet68" radius="128" comment="Red Planet GG Epsilon Map"/>		
+			<planet id="69" resKey="planet69" radius="82" comment="Grey Planet GG Epsilon Map"/>	
+				
+			<planet id="70" resKey="planet70" radius="75" comment="Planet 1 Fifth Birthday Map"/>		
+			<planet id="71" resKey="planet71" radius="200" comment="Planet 2 Fifth Birthday Map"/>		
+			<planet id="72" resKey="planet72" radius="210" comment="Asteroid 1 Fifth Birthday Map"/>		
+			<planet id="73" resKey="planet73" radius="260" comment="Asteroid 2 Fifth Birthday Map"/>		
+			<planet id="74" resKey="planet74" radius="240" comment="Asteroid 3 Fifth Birthday Map"/>		
+			<planet id="75" resKey="planet75" radius="200" comment="Asteroid 4 Fifth Birthday Map"/>		
+			<planet id="76" resKey="planet76" radius="250" comment="Asteroid 5 Fifth Birthday Map"/>		
+			
+			<planet id="77" resKey="planet77" radius="800" comment="Tutorial Map huge"/>
+			<planet id="78" resKey="planet78" radius="240" />
+			<planet id="79" resKey="scrap79" radius="11" />
+			<planet id="80" resKey="scrap80" radius="30" />
+			<planet id="81" resKey="scrap81" radius="30" />
+			<planet id="82" resKey="scrap82" radius="30" />
+			<planet id="83" resKey="scrap83" radius="30" />	
+			<planet id="84" resKey="scrap84" radius="24" />
+			<planet id="85" resKey="scrap85" radius="30" />
+			<planet id="86" resKey="scrap86" radius="30" />
+			<planet id="87" resKey="scrap87" radius="100" />
+			<!--planet id="88" resKey="" radius="" /-->
+			<planet id="89" resKey="asteroids89" radius="40" />
+			<planet id="90" resKey="asteroids90" radius="27" />
+			<planet id="91" resKey="asteroids91" radius="27" />
+			<planet id="92" resKey="asteroids92" radius="30" />
+			<planet id="93" resKey="asteroids93" radius="29" />
+			<planet id="94" resKey="asteroids94" radius="42" />
+			<planet id="95" resKey="asteroids95" radius="80" />
+			<planet id="96" resKey="asteroids96" radius="40" />
+			<planet id="97" resKey="asteroids97" radius="44" />
+			<planet id="99" resKey="planet99" radius="100" />
+			<planet id="100" resKey="planet100" radius="150" />
+			<planet id="102" resKey="planet102" radius="110" />
+			<planet id="106" resKey="planet106" radius="60" />
+			<planet id="107" resKey="planet107" radius="90" />
+			<planet id="108" resKey="planet108" radius="131" />
+			<planet id="109" resKey="planet109" radius="145" />
+			<planet id="110" resKey="planet110" radius="400" />
+			<planet id="111" resKey="planet111" radius="274" />
+			<planet id="112" resKey="planet112" radius="65"  />
+			<planet id="113" resKey="planet113" radius="357" />
+			<planet id="114" resKey="planet114" radius="660" />
+			<planet id="115" resKey="planet115" radius="70" />
+			<planet id="116" resKey="planet116" radius="90" />
+			<planet id="117" resKey="planet117" radius="720" />
+			<planet id="118" resKey="planet118" radius="180" />
+			<planet id="119" resKey="satellite119" radius="50" />
+			<planet id="120" resKey="satellite120" radius="20" />
+			<planet id="121" resKey="satellite121" radius="10" />
+			<planet id="122" resKey="satellite122" radius="40" />
+			<planet id="123" resKey="planet123" radius="510" />
+			<planet id="124" resKey="satellite124" radius="30" />
+			<planet id="125" resKey="satellite125" radius="25" />
+			<planet id="126" resKey="satellite126" radius="90" />
+			<planet id="127" resKey="asteroids127" radius="200" />
+			<planet id="128" resKey="asteroids128" radius="220" />
+			<planet id="129" resKey="asteroids129" radius="200" />
+			<planet id="130" resKey="planet130" radius="70" />
+			<planet id="131" resKey="planet131" radius="205" />
+			<planet id="132" resKey="planet132" radius="302" />
+			<planet id="133" resKey="planet133" radius="45" />
+			<planet id="134" resKey="planet134" radius="90" />
+			<planet id="135" resKey="planet135" radius="90" />
+			<planet id="136" resKey="planet136" radius="120" />
+			<planet id="137" resKey="planet137" radius="10" />
+			<planet id="138" resKey="planet138" radius="8" />
+			<planet id="139" resKey="planet139" radius="6" />
 		</planets>
 
 		<!-- Meteors ............................................................................................................................. -->
@@ -2678,126 +3100,167 @@
 
 		<!-- Drones ............................................................................................................................. -->
 
-	<drones groupRadius="75" >
-<!-- 	Flax Standard Design	 -->
-			<drone id="1" design="standard" level="1" resKey="drone_flax_0" droneRadius="15"/>
-			<drone id="1" design="standard" level="2" resKey="drone_flax_1" droneRadius="15"/>
-			<drone id="1" design="standard" level="3" resKey="drone_flax_2" droneRadius="15"/>
-			<drone id="1" design="standard" level="4" resKey="drone_flax_3" droneRadius="15"/>
-			<drone id="1" design="standard" level="5" resKey="drone_flax_4" droneRadius="15"/>
-			<drone id="1" design="standard" level="6" resKey="drone_flax_5" droneRadius="15"/>
-<!-- 	Flax Havok Design -->
-			<drone id="1" design="havok" level="1" resKey="drone_flax_design_havok_0" droneRadius="15"/>
-			<drone id="1" design="havok" level="2" resKey="drone_flax_design_havok_1" droneRadius="15"/>
-			<drone id="1" design="havok" level="3" resKey="drone_flax_design_havok_2" droneRadius="15"/>
-			<drone id="1" design="havok" level="4" resKey="drone_flax_design_havok_3" droneRadius="15"/>
-			<drone id="1" design="havok" level="5" resKey="drone_flax_design_havok_4" droneRadius="15"/>
-			<drone id="1" design="havok" level="6" resKey="drone_flax_design_havok_5" droneRadius="15"/>
-<!-- 	Flax Hercules Design -->
-			<drone id="1" design="hercules" level="1" resKey="drone_flax_design_hercules_0" droneRadius="15"/>
-			<drone id="1" design="hercules" level="2" resKey="drone_flax_design_hercules_1" droneRadius="15"/>
-			<drone id="1" design="hercules" level="3" resKey="drone_flax_design_hercules_2" droneRadius="15"/>
-			<drone id="1" design="hercules" level="4" resKey="drone_flax_design_hercules_3" droneRadius="15"/>
-			<drone id="1" design="hercules" level="5" resKey="drone_flax_design_hercules_4" droneRadius="15"/>
-			<drone id="1" design="hercules" level="6" resKey="drone_flax_design_hercules_5" droneRadius="15"/>
-<!-- 	Iris Standard Design -->
-			<drone id="2" design="standard" level="1" resKey="drone_iris_0" droneRadius="15"/>
-			<drone id="2" design="standard" level="2" resKey="drone_iris_1" droneRadius="15"/>
-			<drone id="2" design="standard" level="3" resKey="drone_iris_2" droneRadius="15"/>
-			<drone id="2" design="standard" level="4" resKey="drone_iris_3" droneRadius="15"/>
-			<drone id="2" design="standard" level="5" resKey="drone_iris_4" droneRadius="15"/>
-			<drone id="2" design="standard" level="6" resKey="drone_iris_5" droneRadius="15"/>
-<!-- 	Iris Havok Design -->
-			<drone id="8" design="havok" level="1" resKey="drone_iris_design_havok_0" droneRadius="15"/>
-			<drone id="8" design="havok" level="2" resKey="drone_iris_design_havok_1" droneRadius="15"/>
-			<drone id="8" design="havok" level="3" resKey="drone_iris_design_havok_2" droneRadius="15"/>
-			<drone id="8" design="havok" level="4" resKey="drone_iris_design_havok_3" droneRadius="15"/>
-			<drone id="8" design="havok" level="5" resKey="drone_iris_design_havok_4" droneRadius="15"/>
-			<drone id="8" design="havok" level="6" resKey="drone_iris_design_havok_5" droneRadius="15"/>
-<!-- 	Iris Hercules Design -->
-			<drone id="9" design="hercules" level="1" resKey="drone_iris_design_hercules_0" droneRadius="15"/>
-			<drone id="9" design="hercules" level="2" resKey="drone_iris_design_hercules_1" droneRadius="15"/>
-			<drone id="9" design="hercules" level="3" resKey="drone_iris_design_hercules_2" droneRadius="15"/>
-			<drone id="9" design="hercules" level="4" resKey="drone_iris_design_hercules_3" droneRadius="15"/>
-			<drone id="9" design="hercules" level="5" resKey="drone_iris_design_hercules_4" droneRadius="15"/>
-			<drone id="9" design="hercules" level="6" resKey="drone_iris_design_hercules_5" droneRadius="15"/>
-<!--	Apis Standard Design -->
-			<drone id="7" design="standard" level="1" resKey="drone_apis_0" droneRadius="15"/>
-			<drone id="7" design="standard" level="2" resKey="drone_apis_1" droneRadius="15"/>
-			<drone id="7" design="standard" level="3" resKey="drone_apis_2" droneRadius="15"/>
-			<drone id="7" design="standard" level="4" resKey="drone_apis_3" droneRadius="15"/>
-			<drone id="7" design="standard" level="5" resKey="drone_apis_4" droneRadius="15"/>
-			<drone id="7" design="standard" level="6" resKey="drone_apis_5" droneRadius="15"/>
-<!-- 	Apis Havok Design (Note that this is actually identical to the Iris' Havok design. Even though the standard Apis looks different to the Iris. Yup.) -->
-			<drone id="3" design="havok" level="1" resKey="drone_apis_design_havok_0" droneRadius="15"/>
-			<drone id="3" design="havok" level="2" resKey="drone_apis_design_havok_1" droneRadius="15"/>
-			<drone id="3" design="havok" level="3" resKey="drone_apis_design_havok_2" droneRadius="15"/>
-			<drone id="3" design="havok" level="4" resKey="drone_apis_design_havok_3" droneRadius="15"/>
-			<drone id="3" design="havok" level="5" resKey="drone_apis_design_havok_4" droneRadius="15"/>
-			<drone id="3" design="havok" level="6" resKey="drone_apis_design_havok_5" droneRadius="15"/>
-<!-- Apis Hercules Design  -->
-			<drone id="3" design="hercules" level="1" resKey="drone_apis_design_hercules_0" droneRadius="15"/>
-			<drone id="3" design="hercules" level="2" resKey="drone_apis_design_hercules_1" droneRadius="15"/>
-			<drone id="3" design="hercules" level="3" resKey="drone_apis_design_hercules_2" droneRadius="15"/>
-			<drone id="3" design="hercules" level="4" resKey="drone_apis_design_hercules_3" droneRadius="15"/>
-			<drone id="3" design="hercules" level="5" resKey="drone_apis_design_hercules_4" droneRadius="15"/>
-			<drone id="3" design="hercules" level="6" resKey="drone_apis_design_hercules_5" droneRadius="15"/>
-<!--	Zeus Standard Design -->
-			<drone id="5" design="standard" level="1" resKey="drone_zeus_0" droneRadius="15"/>
-			<drone id="5" design="standard" level="2" resKey="drone_zeus_1" droneRadius="15"/>
-			<drone id="5" design="standard" level="3" resKey="drone_zeus_2" droneRadius="15"/>
-			<drone id="5" design="standard" level="4" resKey="drone_zeus_3" droneRadius="15"/>
-			<drone id="5" design="standard" level="5" resKey="drone_zeus_4" droneRadius="15"/>
-			<drone id="5" design="standard" level="6" resKey="drone_zeus_5" droneRadius="15"/>
-<!-- 	Zeus Havok Design (Note that this is actually identical to the Iris' Havok design. Even though the standard Zeus looks different to the Iris. Yup.) -->
-			<drone id="4" design="havok" level="1" resKey="drone_zeus_design_havok_0" droneRadius="15"/>
-			<drone id="4" design="havok" level="2" resKey="drone_zeus_design_havok_1" droneRadius="15"/>
-			<drone id="4" design="havok" level="3" resKey="drone_zeus_design_havok_2" droneRadius="15"/>
-			<drone id="4" design="havok" level="4" resKey="drone_zeus_design_havok_3" droneRadius="15"/>
-			<drone id="4" design="havok" level="5" resKey="drone_zeus_design_havok_4" droneRadius="15"/>
-			<drone id="4" design="havok" level="6" resKey="drone_zeus_design_havok_5" droneRadius="15"/>
-<!-- 	Zeus Hercules Design -->
-			<drone id="6" design="hercules" level="1" resKey="drone_zeus_design_hercules_0" droneRadius="15"/>
-			<drone id="6" design="hercules" level="2" resKey="drone_zeus_design_hercules_1" droneRadius="15"/>
-			<drone id="6" design="hercules" level="3" resKey="drone_zeus_design_hercules_2" droneRadius="15"/>
-			<drone id="6" design="hercules" level="4" resKey="drone_zeus_design_hercules_3" droneRadius="15"/>
-			<drone id="6" design="hercules" level="5" resKey="drone_zeus_design_hercules_4" droneRadius="15"/>
-			<drone id="6" design="hercules" level="6" resKey="drone_zeus_design_hercules_5" droneRadius="15"/>
-			
-<!-- 			<drone id="1" level="0" resKey="droneb0" droneRadius="15"/> -->
-<!-- 			<drone id="1" level="1" resKey="droneb1" droneRadius="15"/> -->
-<!-- 			<drone id="1" level="2" resKey="droneb2" droneRadius="15"/> -->
-<!-- 			<drone id="1" level="3" resKey="droneb3" droneRadius="15"/> -->
-<!-- 			<drone id="1" level="4" resKey="droneb4" droneRadius="15"/> -->
-<!-- 			<drone id="1" level="5" resKey="droneb5" droneRadius="15"/> -->
+	  <drones groupRadius="75" >drones groupRadius="75">
+<!--  	Flax Standard Design	  -->
+<drone id="1" design="standard" level="1" resKey="drone_flax_0" droneRadius="15"/>
+<drone id="1" design="standard" level="2" resKey="drone_flax_1" droneRadius="15"/>
+<drone id="1" design="standard" level="3" resKey="drone_flax_2" droneRadius="15"/>
+<drone id="1" design="standard" level="4" resKey="drone_flax_3" droneRadius="15"/>
+<drone id="1" design="standard" level="5" resKey="drone_flax_4" droneRadius="15"/>
+<drone id="1" design="standard" level="6" resKey="drone_flax_5" droneRadius="15"/>
+<!--  	Flax Havok Design  -->
+<drone id="1" design="havok" level="1" resKey="drone_flax_design_havok_0" droneRadius="15"/>
+<drone id="1" design="havok" level="2" resKey="drone_flax_design_havok_1" droneRadius="15"/>
+<drone id="1" design="havok" level="3" resKey="drone_flax_design_havok_2" droneRadius="15"/>
+<drone id="1" design="havok" level="4" resKey="drone_flax_design_havok_3" droneRadius="15"/>
+<drone id="1" design="havok" level="5" resKey="drone_flax_design_havok_4" droneRadius="15"/>
+<drone id="1" design="havok" level="6" resKey="drone_flax_design_havok_5" droneRadius="15"/>
+<!--  	Flax Hercules Design  -->
+<drone id="1" design="hercules" level="1" resKey="drone_flax_design_hercules_0" droneRadius="15"/>
+<drone id="1" design="hercules" level="2" resKey="drone_flax_design_hercules_1" droneRadius="15"/>
+<drone id="1" design="hercules" level="3" resKey="drone_flax_design_hercules_2" droneRadius="15"/>
+<drone id="1" design="hercules" level="4" resKey="drone_flax_design_hercules_3" droneRadius="15"/>
+<drone id="1" design="hercules" level="5" resKey="drone_flax_design_hercules_4" droneRadius="15"/>
+<drone id="1" design="hercules" level="6" resKey="drone_flax_design_hercules_5" droneRadius="15"/>
+<!--  	Iris Standard Design  -->
+<drone id="2" design="standard" level="1" resKey="drone_iris_0" droneRadius="15"/>
+<drone id="2" design="standard" level="2" resKey="drone_iris_1" droneRadius="15"/>
+<drone id="2" design="standard" level="3" resKey="drone_iris_2" droneRadius="15"/>
+<drone id="2" design="standard" level="4" resKey="drone_iris_3" droneRadius="15"/>
+<drone id="2" design="standard" level="5" resKey="drone_iris_4" droneRadius="15"/>
+<drone id="2" design="standard" level="6" resKey="drone_iris_5" droneRadius="15"/>
+<!--  	Iris Havok Design  -->
+<drone id="2" design="havok" level="1" resKey="drone_iris_design_havok_0" droneRadius="15"/>
+<drone id="2" design="havok" level="2" resKey="drone_iris_design_havok_1" droneRadius="15"/>
+<drone id="2" design="havok" level="3" resKey="drone_iris_design_havok_2" droneRadius="15"/>
+<drone id="2" design="havok" level="4" resKey="drone_iris_design_havok_3" droneRadius="15"/>
+<drone id="2" design="havok" level="5" resKey="drone_iris_design_havok_4" droneRadius="15"/>
+<drone id="2" design="havok" level="6" resKey="drone_iris_design_havok_5" droneRadius="15"/>
+<!--  	Iris Hercules Design  -->
+<drone id="2" design="hercules" level="1" resKey="drone_iris_design_hercules_0" droneRadius="15"/>
+<drone id="2" design="hercules" level="2" resKey="drone_iris_design_hercules_1" droneRadius="15"/>
+<drone id="2" design="hercules" level="3" resKey="drone_iris_design_hercules_2" droneRadius="15"/>
+<drone id="2" design="hercules" level="4" resKey="drone_iris_design_hercules_3" droneRadius="15"/>
+<drone id="2" design="hercules" level="5" resKey="drone_iris_design_hercules_4" droneRadius="15"/>
+<drone id="2" design="hercules" level="6" resKey="drone_iris_design_hercules_5" droneRadius="15"/>
+<!-- 	Apis Standard Design  -->
+<drone id="3" design="standard" level="1" resKey="drone_apis_0" droneRadius="15"/>
+<drone id="3" design="standard" level="2" resKey="drone_apis_1" droneRadius="15"/>
+<drone id="3" design="standard" level="3" resKey="drone_apis_2" droneRadius="15"/>
+<drone id="3" design="standard" level="4" resKey="drone_apis_3" droneRadius="15"/>
+<drone id="3" design="standard" level="5" resKey="drone_apis_4" droneRadius="15"/>
+<drone id="9" design="standard" level="6" resKey="drone_apis_5" droneRadius="15"/>
+<!--
+ 	Apis Havok Design (Note that this is actually identical to the Iris' Havok design. Even though the standard Apis looks different to the Iris. Yup.) 
+-->
+<drone id="3" design="havok" level="1" resKey="drone_apis_design_havok_0" droneRadius="15"/>
+<drone id="3" design="havok" level="2" resKey="drone_apis_design_havok_1" droneRadius="15"/>
+<drone id="3" design="havok" level="3" resKey="drone_apis_design_havok_2" droneRadius="15"/>
+<drone id="3" design="havok" level="4" resKey="drone_apis_design_havok_3" droneRadius="15"/>
+<drone id="3" design="havok" level="5" resKey="drone_apis_design_havok_4" droneRadius="15"/>
+<drone id="3" design="havok" level="6" resKey="drone_apis_design_havok_5" droneRadius="15"/>
+<!--  Apis Hercules Design   -->
+<drone id="3" design="hercules" level="1" resKey="drone_apis_design_hercules_0" droneRadius="15"/>
+<drone id="3" design="hercules" level="2" resKey="drone_apis_design_hercules_1" droneRadius="15"/>
+<drone id="3" design="hercules" level="3" resKey="drone_apis_design_hercules_2" droneRadius="15"/>
+<drone id="3" design="hercules" level="4" resKey="drone_apis_design_hercules_3" droneRadius="15"/>
+<drone id="3" design="hercules" level="5" resKey="drone_apis_design_hercules_4" droneRadius="15"/>
+<drone id="3" design="hercules" level="6" resKey="drone_apis_design_hercules_5" droneRadius="15"/>
+<!-- 	Zeus Standard Design  -->
+<drone id="6" design="standard" level="1" resKey="drone_zeus_0" droneRadius="15"/>
+<drone id="6" design="standard" level="2" resKey="drone_zeus_1" droneRadius="15"/>
+<drone id="6" design="standard" level="3" resKey="drone_zeus_2" droneRadius="15"/>
+<drone id="6" design="standard" level="4" resKey="drone_zeus_3" droneRadius="15"/>
+<drone id="6" design="standard" level="5" resKey="drone_zeus_4" droneRadius="15"/>
+<drone id="6" design="standard" level="6" resKey="drone_zeus_5" droneRadius="15"/>
+<!--
+ 	Zeus Havok Design (Note that this is actually identical to the Iris' Havok design. Even though the standard Zeus looks different to the Iris. Yup.) 
+-->
+<drone id="4" design="havok" level="1" resKey="drone_zeus_design_havok_0" droneRadius="15"/>
+<drone id="4" design="havok" level="2" resKey="drone_zeus_design_havok_1" droneRadius="15"/>
+<drone id="4" design="havok" level="3" resKey="drone_zeus_design_havok_2" droneRadius="15"/>
+<drone id="4" design="havok" level="4" resKey="drone_zeus_design_havok_3" droneRadius="15"/>
+<drone id="4" design="havok" level="5" resKey="drone_zeus_design_havok_4" droneRadius="15"/>
+<drone id="4" design="havok" level="6" resKey="drone_zeus_design_havok_5" droneRadius="15"/>
+<!--  	Zeus Hercules Design  -->
+<drone id="5" design="hercules" level="1" resKey="drone_zeus_design_hercules_0" droneRadius="15"/>
+<drone id="5" design="hercules" level="2" resKey="drone_zeus_design_hercules_1" droneRadius="15"/>
+<drone id="5" design="hercules" level="3" resKey="drone_zeus_design_hercules_2" droneRadius="15"/>
+<drone id="5" design="hercules" level="4" resKey="drone_zeus_design_hercules_3" droneRadius="15"/>
+<drone id="5" design="hercules" level="5" resKey="drone_zeus_design_hercules_4" droneRadius="15"/>
+<drone id="5" design="hercules" level="6" resKey="drone_zeus_design_hercules_5" droneRadius="15"/>
+<!--
+ 			<drone id="1" level="0" resKey="droneb0" droneRadius="15"/> 
+-->
+<!--
+ 			<drone id="1" level="1" resKey="droneb1" droneRadius="15"/> 
+-->
+<!--
+ 			<drone id="1" level="2" resKey="droneb2" droneRadius="15"/> 
+-->
+<!--
+ 			<drone id="1" level="3" resKey="droneb3" droneRadius="15"/> 
+-->
+<!--
+ 			<drone id="1" level="4" resKey="droneb4" droneRadius="15"/> 
+-->
+<!--
+ 			<drone id="1" level="5" resKey="droneb5" droneRadius="15"/> 
+-->
+<!--
+ 			<drone id="2" level="0" resKey="dronea0" droneRadius="15"/> 
+-->
+<!--
+ 			<drone id="2" level="1" resKey="dronea1" droneRadius="15"/> 
+-->
+<!--
+ 			<drone id="2" level="2" resKey="dronea2" droneRadius="15"/> 
+-->
+<!--
+ 			<drone id="2" level="3" resKey="dronea3" droneRadius="15"/> 
+-->
+<!--
+ 			<drone id="2" level="4" resKey="dronea4" droneRadius="15"/> 
+-->
+<!--
+ 			<drone id="2" level="5" resKey="dronea5" droneRadius="15"/> 
+-->
+<!--
+ 			<drone id="3" level="0" resKey="dronec0" droneRadius="15"/> 
+-->
+<!--
+ 			<drone id="3" level="1" resKey="dronec1" droneRadius="15"/> 
+-->
+<!--
+ 			<drone id="3" level="2" resKey="dronec2" droneRadius="15"/> 
+-->
+<!--
+ 			<drone id="3" level="3" resKey="dronec3" droneRadius="15"/> 
+-->
+<!--
+ 			<drone id="3" level="4" resKey="dronec4" droneRadius="15"/> 
+-->
+<!--
+ 			<drone id="3" level="5" resKey="dronec5" droneRadius="15"/> 
+-->
+</drones>
 
-<!-- 			<drone id="2" level="0" resKey="dronea0" droneRadius="15"/> -->
-<!-- 			<drone id="2" level="1" resKey="dronea1" droneRadius="15"/> -->
-<!-- 			<drone id="2" level="2" resKey="dronea2" droneRadius="15"/> -->
-<!-- 			<drone id="2" level="3" resKey="dronea3" droneRadius="15"/> -->
-<!-- 			<drone id="2" level="4" resKey="dronea4" droneRadius="15"/> -->
-<!-- 			<drone id="2" level="5" resKey="dronea5" droneRadius="15"/> -->
-			
-<!-- 			<drone id="3" level="0" resKey="dronec0" droneRadius="15"/> -->
-<!-- 			<drone id="3" level="1" resKey="dronec1" droneRadius="15"/> -->
-<!-- 			<drone id="3" level="2" resKey="dronec2" droneRadius="15"/> -->
-<!-- 			<drone id="3" level="3" resKey="dronec3" droneRadius="15"/> -->
-<!-- 			<drone id="3" level="4" resKey="dronec4" droneRadius="15"/> -->
-<!-- 			<drone id="3" level="5" resKey="dronec5" droneRadius="15"/> -->
-		</drones>
-
-		<boosters>			
-			<booster id="1" infoFieldID="32" resKey="boosterXPIcon" barKey="bar_green"/>
-			<booster id="2" infoFieldID="33" resKey="boosterHonorIcon" barKey="bar_green"/>
-			<booster id="3" infoFieldID="34" resKey="boosterDamageIcon" barKey="bar_green"/>
-			<booster id="4" infoFieldID="35" resKey="boosterShieldIcon" barKey="bar_green"/>
-			<booster id="5" infoFieldID="36" resKey="boosterRepairIcon" barKey="bar_green"/>
-			<booster id="6" infoFieldID="37" resKey="boosterShieldRecoveryIcon" barKey="bar_green"/>
-			<booster id="7" infoFieldID="38" resKey="boosterResourceIcon" barKey="bar_green"/>
-			<booster id="8" infoFieldID="39" resKey="boosterHitpointsIcon" barKey="bar_green"/>
-			<booster id="9" infoFieldID="83" resKey="boosterQuestRewardIcon" barKey="bar_green"/>
-			<booster id="10" infoFieldID="84" resKey="boosterBonusBoxIcon" barKey="bar_green"/>
-		</boosters>
+		<boosters>
+<booster id="1" infoFieldID="32" resKey="boosterXPIcon" barKey="bar_green"/>
+<booster id="2" infoFieldID="33" resKey="boosterHonorIcon" barKey="bar_green"/>
+<booster id="3" infoFieldID="34" resKey="boosterDamageIcon" barKey="bar_green"/>
+<booster id="4" infoFieldID="35" resKey="boosterShieldIcon" barKey="bar_green"/>
+<booster id="5" infoFieldID="36" resKey="boosterRepairIcon" barKey="bar_green"/>
+<booster id="6" infoFieldID="37" resKey="boosterShieldRecoveryIcon" barKey="bar_green"/>
+<booster id="7" infoFieldID="38" resKey="boosterResourceIcon" barKey="bar_green"/>
+<booster id="8" infoFieldID="39" resKey="boosterHitpointsIcon" barKey="bar_green"/>
+<booster id="9" infoFieldID="83" resKey="boosterQuestRewardIcon" barKey="bar_green"/>
+<booster id="10" infoFieldID="84" resKey="boosterBonusBoxIcon" barKey="bar_green"/>
+<!--
+ id 11-20 are group version of 1-10, stack and such use same bar 
+-->
+<booster id="11" infoFieldID="97" resKey="boosterCooldownIcon" barKey="bar_green"/>
+</boosters>
 
 		<!-- Lasers .............................................................................................................................
 
@@ -2810,8 +3273,7 @@
 
 			 Optional Values:
 			 soundID - default is -1, which means no sound. type of sound when the laser fires. Look at the <soundEffects> section -->
-
-		<lasers>
+	<lasers>
 			<laser class="0" type="0" resKey="laser0" skillResKey="skillLaser0" fireRate="400" comment="red laser" soundID="0" laserFlashID="0" laserLength="80"/>
 			<laser class="0" type="1" resKey="laser1" skillResKey="skillLaser1" fireRate="400" comment="blue laser" soundID="9" laserLength="80"/>
 			<laser class="0" type="2" resKey="laser2" skillResKey="skillLaser2" fireRate="400" comment="green laser" soundID="10" laserLength="80"/>
@@ -3034,7 +3496,6 @@
 
 		<music>
 			<track id="0" resKey="track0" volume="0.7"/>
-		    <track id="1" resKey="track1" volume="1"/>
 		</music>
 
 		<!-- Sounds .............................................................................................................................
@@ -3134,7 +3595,35 @@
 
 			<sound id="81" resKey="lightningStart" comment="Speed Buff Effect Sound - Start-up" soundbank="combatSounds"/>
 			<sound id="82" resKey="lightningLoop" comment="Speed Buff Effect Sound - Looping" soundbank="combatSounds"/>
-		</sounds>
+	
+<sound id="108" volume="1" soundbank="shipSounds">
+<reskeys>
+<reskey resKey="hitac_mothership_engine_loop"/>
+</reskeys>
+</sound>
+<sound id="109" volume="0.7" soundbank="shipSounds">
+<reskeys>
+<reskey resKey="hitac_mothership_call"/>
+</reskeys>
+</sound>
+<sound id="110" volume="0.8" soundbank="combatSounds">
+<reskeys>
+<reskey resKey="hitac_mothership_cannon_shot"/>
+</reskeys>
+</sound>
+<sound id="111" volume="0.5" soundbank="combatSounds">
+<reskeys>
+<reskey resKey="laser0_0"/>
+<reskey resKey="laser0_1"/>
+<reskey resKey="laser0_2"/>
+</reskeys>
+</sound>
+<sound id="112" volume="1" soundbank="shipSounds">
+<reskeys>
+<reskey resKey="hitac_release_minion"/>
+</reskeys>
+</sound>
+	</sounds>
 
 		<!-- PYRO EFFECTS .............................................................................................................................
 
@@ -3301,6 +3790,11 @@
 			<!-- TODO check correct positions for skill designs, start -->
 			<enginePosition comment="Streuner" class="84">
 				<positionsList name="center" data="46.85,-1.45,45,7.6,42,13.55,37,19,32,24.45,25,29,17.5,30,9,32.5,0,33,-9,33,-18,30.6,-25,27,-32,23,-37.5,18,-41,12,-43.5,6.45,-44,-1,-43,-7,-41.55,-12.45,-38.5,-19.05,-32.35,-25.95,-25,-29.15,-18,-32.05,-9.5,-33.6,-1,-36,8.85,-36,17,-33,24,-29.15,31,-25,34.95,-21.1,42.85,-17.2,46,-8"/>
+			</enginePosition>
+			<enginePosition comment="StreunerBoss" class="23">
+				<lowPositionsList name="center" data="73.9,-15.8,74.8,-6.2,72.6,4.0,66.9,14.1,58.5,23.3,46.6,31.2,32.6,37.0,16.3,40.9,-0.4,42.2,-17.6,40.9,-33.9,37.0,-48.0,30.8,-59.4,22.9,-68.2,13.6,-73.5,4.0,-75.7,-6.2,-74.8,-16.3,-70.8,-25.5,-65.1,-33.9,-57.2,-41.4,-47.5,-47.5,-37.0,-52.4,-25.1,-56.3,-12.8,-58.1,0.0,-59.0,12.3,-58.1,24.6,-55.9,36.5,-52.4,47.1,-47.5,56.3,-41.4,64.2,-33.9,70.4,-25.5"/>
+				<positionsList name="leftInner" data="45.8,17.2,37.0,23.3,26.4,28.2,14.5,31.2,1.8,32.6,-11.0,32.1,-23.3,29.5,-34.3,25.5,-43.6,19.8,-51.0,12.8,-55.9,5.3,-58.5,-2.6,-58.5,-10.6,-56.8,-18.0,-52.4,-25.1,-46.6,-31.2,-39.6,-36.5,-31.2,-40.5,-22.0,-44.0,-12.3,-45.8,-2.2,-46.6,7.9,-46.2,18.0,-44.4,27.3,-41.8,36.1,-37.8,43.6,-33.0,49.7,-27.3,54.6,-20.7,57.2,-13.2,58.1,-5.3,56.3,2.6,52.4,10.1"/>
+				<positionsList name="rightInner" data="38.7,-36.1,45.8,-30.8,51.5,-24.6,55.4,-17.6,57.6,-10.1,57.2,-2.2,54.6,5.3,49.7,12.8,42.7,19.8,33.0,25.1,22.0,29.5,9.7,31.7,-3.1,32.6,-15.8,31.2,-27.7,27.7,-37.8,23.3,-46.6,17.2,-52.8,10.1,-56.8,2.2,-58.5,-5.7,-57.6,-13.2,-55.0,-20.7,-50.2,-27.3,-44.0,-33.0,-36.5,-37.8,-27.7,-41.8,-18.5,-44.4,-8.4,-46.2,1.8,-46.6,11.4,-45.8,21.6,-43.6,30.4,-40.5"/>
 			</enginePosition>
 			<enginePosition comment="StreuneR" class="85">
 				<positionsList name="center" data="38.35,-16.95,37,-11.4,35,-6.45,31,-2,27,1.45,23,5,16,8,9,10,0,11.7,-7,10.4,-13,10.1,-18,7,-24,2,-29,-3,-31,-7,-34.5,-13.55,-34,-19,-33,-24,-31.55,-29.95,-29,-34.05,-24.35,-37.95,-19,-42.15,-12,-47.05,-5,-48.1,3,-50,13.35,-49,21,-46,28,-41.65,32,-36,34.95,-31.1,37.85,-27.2,39,-23"/>

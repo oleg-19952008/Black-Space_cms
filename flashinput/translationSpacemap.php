@@ -1,4 +1,4 @@
-<?php header("Content-type: text/xml"); ?>
+
 <translation>
 <item id='notloggedin'><![CDATA[Please log in again]]></item>
 <item id='nohitpoints'><![CDATA[No hit points left. Repair your ship in the hangar or buy a new ship!]]></item>

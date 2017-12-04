@@ -3,7 +3,7 @@ jQuery(document).ready(function() {
         "src": "swf_global/inventory/inventory.swf",
         "version": [0, 0],
         "width": 770,
-        "height": 395,
+        "height": "100%",
         "id": "inventory",
         "wmode": "transparent"
     },
